@@ -1,3 +1,5 @@
+//Please don't replace listeners with lambda!
+
 package com.android.support;
 
 import android.annotation.SuppressLint;
@@ -269,7 +271,7 @@ public class Menu {
 
         //********** RelativeLayout for buttons **********
         RelativeLayout relativeLayout = new RelativeLayout(context);
-        relativeLayout.setPadding(10, 8, 10, 8);
+        relativeLayout.setPadding(10, 3, 10, 3);
         relativeLayout.setVerticalGravity(Gravity.CENTER);
 
         //**********  Hide/Kill button **********
@@ -278,19 +280,9 @@ public class Menu {
 
         Button hideBtn = new Button(context);
         hideBtn.setLayoutParams(lParamsHideBtn);
-        hideBtn.setText("HIDE/KILL");
+        hideBtn.setBackgroundColor(Color.TRANSPARENT);
+        hideBtn.setText("HIDE/KILL (Hold)");
         hideBtn.setTextColor(TEXT_COLOR);
-        hideBtn.setTextSize(12.0f);
-        hideBtn.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-        hideBtn.setPadding(dp(16), dp(10), dp(16), dp(10));
-        hideBtn.setAllCaps(false);
-        
-        // Apply premium styling to Hide button
-        hideBtn.setBackground(getPremiumBottomButtonDrawable(false));
-        
-        // Add subtle text shadow
-        hideBtn.setShadowLayer(1.0f, 0.5f, 0.5f, Color.parseColor("#40000000"));
-        
         hideBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mCollapsed.setVisibility(View.VISIBLE);
@@ -314,19 +306,9 @@ public class Menu {
 
         Button closeBtn = new Button(context);
         closeBtn.setLayoutParams(lParamsCloseBtn);
+        closeBtn.setBackgroundColor(Color.TRANSPARENT);
         closeBtn.setText("MINIMIZE");
         closeBtn.setTextColor(TEXT_COLOR);
-        closeBtn.setTextSize(12.0f);
-        closeBtn.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
-        closeBtn.setPadding(dp(16), dp(10), dp(16), dp(10));
-        closeBtn.setAllCaps(false);
-        
-        // Apply premium styling to Close button
-        closeBtn.setBackground(getPremiumBottomButtonDrawable(true));
-        
-        // Add subtle text shadow
-        closeBtn.setShadowLayer(1.0f, 0.5f, 0.5f, Color.parseColor("#40000000"));
-        
         closeBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mCollapsed.setVisibility(View.VISIBLE);
@@ -709,57 +691,6 @@ public class Menu {
         return btnLayer;
     }
 
-    private LayerDrawable getPremiumBottomButtonDrawable(boolean isMinimize) {
-        //********** Premium Bottom Button Styling **********
-        
-        // Main button background with gradient
-        GradientDrawable mainBg = new GradientDrawable();
-        mainBg.setCornerRadius(MENU_CORNER);
-        
-        // Different colors for different button types
-        if (isMinimize) {
-            // Minimize button - softer purple
-            mainBg.setColors(new int[]{
-                Color.parseColor("#8B5CF6"), // Light purple
-                Color.parseColor("#7C3AED")  // Slightly darker purple
-            });
-        } else {
-            // Hide/Kill button - warmer purple-pink
-            mainBg.setColors(new int[]{
-                Color.parseColor("#A855F7"), // Lighter purple
-                Color.parseColor("#9333EA")  // Purple
-            });
-        }
-        mainBg.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
-        
-        // Border/stroke gradient
-        GradientDrawable borderGradient = new GradientDrawable();
-        borderGradient.setCornerRadius(MENU_CORNER);
-        borderGradient.setStroke(dp(1), Color.parseColor("#C4B5FD")); // Light purple border
-        
-        // Subtle shadow layer
-        GradientDrawable shadowLayer = new GradientDrawable();
-        shadowLayer.setCornerRadius(MENU_CORNER + 1);
-        shadowLayer.setColor(Color.parseColor("#20000000")); // Subtle shadow
-        
-        // Inner glow effect
-        GradientDrawable innerGlow = new GradientDrawable();
-        innerGlow.setCornerRadius(MENU_CORNER - 1);
-        innerGlow.setStroke(dp(1), Color.parseColor("#40FFFFFF")); // White inner glow
-        
-        // Layer all effects together
-        LayerDrawable btnLayer = new LayerDrawable(new Drawable[]{
-            shadowLayer, mainBg, innerGlow, borderGradient
-        });
-        
-        // Set insets for layering effect
-        btnLayer.setLayerInset(1, dp(1), dp(1), dp(1), dp(1)); // Main background
-        btnLayer.setLayerInset(2, dp(2), dp(2), dp(2), dp(2)); // Inner glow
-        btnLayer.setLayerInset(3, dp(1), dp(1), dp(1), dp(1)); // Border
-        
-        return btnLayer;
-    }
-
     private void ButtonLink(LinearLayout linLayout, final String featName, final String url) {
         final Button button = new Button(getContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
@@ -846,7 +777,7 @@ public class Menu {
         //Creating the ArrayAdapter instance having the list
         ArrayAdapter aa = new ArrayAdapter(getContext, android.R.layout.simple_spinner_dropdown_item, lists);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner'
+        //Setting the ArrayAdapter data on the Spinner’
         spinner.setAdapter(aa);
         spinner.setSelection(Preferences.loadPrefInt(featName, featNum));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
