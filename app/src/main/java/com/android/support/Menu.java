@@ -75,25 +75,25 @@ public class Menu {
     int TEXT_COLOR = Color.parseColor("#FFFFFF"); // Pure white for primary text
     int TEXT_COLOR_2 = Color.parseColor("#E5E7EB"); // Light gray for secondary text
     int BTN_COLOR = Color.parseColor("#1F1F23"); // Dark button background
-    int MENU_BG_COLOR = Color.parseColor("#F5000000"); //#AARRGGBB - Pure black with high transparency
-    int MENU_FEATURE_BG_COLOR = Color.parseColor("#E8111111"); //#AARRGGBB - Dark gray feature background
-    int MENU_WIDTH = 280; // Reduced width for better proportions
-    int MENU_HEIGHT = 200; // Reduced height
+    int MENU_BG_COLOR = Color.parseColor("#E5000000"); //#AARRGGBB - Pure black with transparency
+    int MENU_FEATURE_BG_COLOR = Color.parseColor("#DD1F1F23"); //#AARRGGBB - Dark gray feature background
+    int MENU_WIDTH = 290; // Reduced width for better proportions
+    int MENU_HEIGHT = 210; // Reduced height
     int POS_X = 0;
     int POS_Y = 100;
 
     float MENU_CORNER = 8f; // Slightly smaller corner radius for ImGui feel
-    int ICON_SIZE = 42; // Proper icon size
-    float ICON_ALPHA = 1.0f; // Full opacity for crisp look
+    int ICON_SIZE = 45; // Proper icon size
+    float ICON_ALPHA = 0.8f; // Full opacity for crisp look
     int ToggleON = Color.parseColor("#22C55E"); // Premium green
-    int ToggleOFF = Color.parseColor("#DC2626"); // Clean red
+    int ToggleOFF = Color.parseColor("#EF4444"); // Clean red
     int BtnON = Color.parseColor("#8B5CF6"); // Premium purple when active
-    int BtnOFF = Color.parseColor("#374151"); // Dark gray when inactive
+    int BtnOFF = Color.parseColor("#6B7280"); // Dark gray when inactive
     int CategoryBG = Color.parseColor("#1F1F23"); // Dark category background
-    int SeekBarColor = Color.parseColor("#6B7280"); // Neutral gray
-    int SeekBarProgressColor = Color.parseColor("#8B5CF6"); // Premium purple
+    int SeekBarColor = Color.parseColor("#8B5CF6"); // Neutral gray
+    int SeekBarProgressColor = Color.parseColor("#A855F7"); // Premium purple
     int CheckBoxColor = Color.parseColor("#22C55E"); // Premium green
-    int RadioColor = Color.parseColor("#D1D5DB"); // Light gray
+    int RadioColor = Color.parseColor("#FFFFFF"); // Light gray
 	int CollapseColor = Color.parseColor("#1F1F23"); // Dark collapse background
     String NumberTxtColor = "#22C55E"; // Premium green for numbers
     //********************************************************************//
@@ -146,14 +146,14 @@ public class Menu {
         gdMenuBody.setCornerRadius(MENU_CORNER); //Set corner
         gdMenuBody.setColor(MENU_BG_COLOR); //Set background color
         gdMenuBody.setStroke(dp(1), Color.parseColor("#8B5CF6")); //Premium purple border
-        
+
         // Create subtle shadow effect with gradient
         GradientDrawable shadowDrawable = new GradientDrawable();
         shadowDrawable.setCornerRadius(MENU_CORNER);
         shadowDrawable.setColors(new int[]{Color.parseColor("#80000000"), Color.parseColor("#00000000")});
         shadowDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
         shadowDrawable.setGradientRadius(dp(20));
-        
+
         mExpanded.setBackground(gdMenuBody); //Apply GradientDrawable to it
 
         //********** The icon to open mod menu **********
@@ -737,7 +737,7 @@ public class Menu {
         //Creating the ArrayAdapter instance having the list
         ArrayAdapter aa = new ArrayAdapter(getContext, android.R.layout.simple_spinner_dropdown_item, lists);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner'
+        //Setting the ArrayAdapter data on the Spinner’
         spinner.setAdapter(aa);
         spinner.setSelection(Preferences.loadPrefInt(featName, featNum));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
