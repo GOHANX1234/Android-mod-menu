@@ -72,30 +72,30 @@ public class Menu {
     //region Variable
     public static final String TAG = "Mod_Menu"; //Tag for logcat
 
-    int TEXT_COLOR = Color.parseColor("#82CAFD");
-    int TEXT_COLOR_2 = Color.parseColor("#FFFFFF");
-    int BTN_COLOR = Color.parseColor("#1C262D");
-    int MENU_BG_COLOR = Color.parseColor("#EE1C2A35"); //#AARRGGBB
-    int MENU_FEATURE_BG_COLOR = Color.parseColor("#DD141C22"); //#AARRGGBB
-    int MENU_WIDTH = 290;
-    int MENU_HEIGHT = 210;
+    int TEXT_COLOR = Color.parseColor("#E8EAED");
+    int TEXT_COLOR_2 = Color.parseColor("#F8F9FA");
+    int BTN_COLOR = Color.parseColor("#2D3436");
+    int MENU_BG_COLOR = Color.parseColor("#F0111827"); //#AARRGGBB - Premium dark blue-gray
+    int MENU_FEATURE_BG_COLOR = Color.parseColor("#E60F172A"); //#AARRGGBB - Darker feature background
+    int MENU_WIDTH = 320;
+    int MENU_HEIGHT = 240;
     int POS_X = 0;
     int POS_Y = 100;
 
-    float MENU_CORNER = 4f;
-    int ICON_SIZE = 45; //Change both width and height of image
-    float ICON_ALPHA = 0.7f; //Transparent
-    int ToggleON = Color.GREEN;
-    int ToggleOFF = Color.RED;
-    int BtnON = Color.parseColor("#1b5e20");
-    int BtnOFF = Color.parseColor("#7f0000");
-    int CategoryBG = Color.parseColor("#2F3D4C");
-    int SeekBarColor = Color.parseColor("#80CBC4");
-    int SeekBarProgressColor = Color.parseColor("#80CBC4");
-    int CheckBoxColor = Color.parseColor("#80CBC4");
-    int RadioColor = Color.parseColor("#FFFFFF");
-	int CollapseColor = Color.parseColor("#232F2C");
-    String NumberTxtColor = "#41c300";
+    float MENU_CORNER = 12f; // Increased corner radius for modern look
+    int ICON_SIZE = 50; //Slightly larger icon
+    float ICON_ALPHA = 0.9f; //Less transparent for better visibility
+    int ToggleON = Color.parseColor("#00E676"); // Modern green
+    int ToggleOFF = Color.parseColor("#FF5252"); // Modern red
+    int BtnON = Color.parseColor("#1976D2"); // Premium blue
+    int BtnOFF = Color.parseColor("#424242"); // Subtle gray
+    int CategoryBG = Color.parseColor("#1E293B"); // Modern slate
+    int SeekBarColor = Color.parseColor("#6366F1"); // Premium indigo
+    int SeekBarProgressColor = Color.parseColor("#8B5CF6"); // Premium purple
+    int CheckBoxColor = Color.parseColor("#10B981"); // Premium emerald
+    int RadioColor = Color.parseColor("#F1F5F9"); // Light gray
+	int CollapseColor = Color.parseColor("#1E293B"); // Consistent with category
+    String NumberTxtColor = "#10B981"; // Premium emerald for numbers
     //********************************************************************//
 
     RelativeLayout mCollapsed, mRootContainer;

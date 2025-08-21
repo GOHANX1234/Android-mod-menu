@@ -3,5 +3,7 @@
     <style name="AppTheme" parent="@android:style/Theme.Material">
         <!-- Customize your theme here. -->
         <item name="android:background">@color/backgroundColor</item>
+        <item name="android:statusBarColor">#0F172A</item>
+        <item name="android:navigationBarColor">#0F172A</item>
     </style>
 </resources>
