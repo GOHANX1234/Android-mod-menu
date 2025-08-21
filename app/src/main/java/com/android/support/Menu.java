@@ -72,30 +72,30 @@ public class Menu {
     //region Variable
     public static final String TAG = "Mod_Menu"; //Tag for logcat
 
-    int TEXT_COLOR = Color.parseColor("#E8EAED");
-    int TEXT_COLOR_2 = Color.parseColor("#F8F9FA");
-    int BTN_COLOR = Color.parseColor("#2D3436");
-    int MENU_BG_COLOR = Color.parseColor("#F0111827"); //#AARRGGBB - Premium dark blue-gray
-    int MENU_FEATURE_BG_COLOR = Color.parseColor("#E60F172A"); //#AARRGGBB - Darker feature background
-    int MENU_WIDTH = 320;
-    int MENU_HEIGHT = 240;
+    int TEXT_COLOR = Color.parseColor("#FFFFFF"); // Pure white for primary text
+    int TEXT_COLOR_2 = Color.parseColor("#E5E7EB"); // Light gray for secondary text
+    int BTN_COLOR = Color.parseColor("#1F1F23"); // Dark button background
+    int MENU_BG_COLOR = Color.parseColor("#F5000000"); //#AARRGGBB - Pure black with high transparency
+    int MENU_FEATURE_BG_COLOR = Color.parseColor("#E8111111"); //#AARRGGBB - Dark gray feature background
+    int MENU_WIDTH = 280; // Reduced width for better proportions
+    int MENU_HEIGHT = 200; // Reduced height
     int POS_X = 0;
     int POS_Y = 100;
 
-    float MENU_CORNER = 12f; // Increased corner radius for modern look
-    int ICON_SIZE = 50; //Slightly larger icon
-    float ICON_ALPHA = 0.9f; //Less transparent for better visibility
-    int ToggleON = Color.parseColor("#00E676"); // Modern green
-    int ToggleOFF = Color.parseColor("#FF5252"); // Modern red
-    int BtnON = Color.parseColor("#1976D2"); // Premium blue
-    int BtnOFF = Color.parseColor("#424242"); // Subtle gray
-    int CategoryBG = Color.parseColor("#1E293B"); // Modern slate
-    int SeekBarColor = Color.parseColor("#6366F1"); // Premium indigo
+    float MENU_CORNER = 8f; // Slightly smaller corner radius for ImGui feel
+    int ICON_SIZE = 42; // Proper icon size
+    float ICON_ALPHA = 1.0f; // Full opacity for crisp look
+    int ToggleON = Color.parseColor("#22C55E"); // Premium green
+    int ToggleOFF = Color.parseColor("#DC2626"); // Clean red
+    int BtnON = Color.parseColor("#8B5CF6"); // Premium purple when active
+    int BtnOFF = Color.parseColor("#374151"); // Dark gray when inactive
+    int CategoryBG = Color.parseColor("#1F1F23"); // Dark category background
+    int SeekBarColor = Color.parseColor("#6B7280"); // Neutral gray
     int SeekBarProgressColor = Color.parseColor("#8B5CF6"); // Premium purple
-    int CheckBoxColor = Color.parseColor("#10B981"); // Premium emerald
-    int RadioColor = Color.parseColor("#F1F5F9"); // Light gray
-	int CollapseColor = Color.parseColor("#1E293B"); // Consistent with category
-    String NumberTxtColor = "#10B981"; // Premium emerald for numbers
+    int CheckBoxColor = Color.parseColor("#22C55E"); // Premium green
+    int RadioColor = Color.parseColor("#D1D5DB"); // Light gray
+	int CollapseColor = Color.parseColor("#1F1F23"); // Dark collapse background
+    String NumberTxtColor = "#22C55E"; // Premium green for numbers
     //********************************************************************//
 
     RelativeLayout mCollapsed, mRootContainer;
@@ -140,13 +140,21 @@ public class Menu {
         mExpanded.setVisibility(View.GONE);
         mExpanded.setBackgroundColor(MENU_BG_COLOR);
         mExpanded.setOrientation(LinearLayout.VERTICAL);
-        // mExpanded.setPadding(1, 1, 1, 1); //So borders would be visible
+        mExpanded.setPadding(dp(8), dp(8), dp(8), dp(8)); // ImGui-style padding
         mExpanded.setLayoutParams(new LinearLayout.LayoutParams(dp(MENU_WIDTH), WRAP_CONTENT));
         GradientDrawable gdMenuBody = new GradientDrawable();
         gdMenuBody.setCornerRadius(MENU_CORNER); //Set corner
         gdMenuBody.setColor(MENU_BG_COLOR); //Set background color
-        gdMenuBody.setStroke(1, Color.parseColor("#32cb00")); //Set border
-        //mExpanded.setBackground(gdMenuBody); //Apply GradientDrawable to it
+        gdMenuBody.setStroke(dp(1), Color.parseColor("#8B5CF6")); //Premium purple border
+        
+        // Create subtle shadow effect with gradient
+        GradientDrawable shadowDrawable = new GradientDrawable();
+        shadowDrawable.setCornerRadius(MENU_CORNER);
+        shadowDrawable.setColors(new int[]{Color.parseColor("#80000000"), Color.parseColor("#00000000")});
+        shadowDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
+        shadowDrawable.setGradientRadius(dp(20));
+        
+        mExpanded.setBackground(gdMenuBody); //Apply GradientDrawable to it
 
         //********** The icon to open mod menu **********
         startimage = new ImageView(context);
