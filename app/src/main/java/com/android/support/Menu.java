@@ -15,7 +15,10 @@ import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -58,8 +61,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.view.WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
 import static android.widget.RelativeLayout.ALIGN_PARENT_LEFT;
 import static android.widget.RelativeLayout.ALIGN_PARENT_RIGHT;
@@ -229,13 +232,17 @@ public class Menu {
 
         //********** Title **********
         RelativeLayout titleText = new RelativeLayout(context);
-        titleText.setPadding(10, 5, 10, 5);
+        titleText.setPadding(dp(12), dp(8), dp(12), dp(6));
         titleText.setVerticalGravity(16);
 
         TextView title = new TextView(context);
-        title.setTextColor(TEXT_COLOR);
-        title.setTextSize(18.0f);
-        title.setGravity(Gravity.CENTER);
+        title.setText(Title);
+        title.setTextColor(TEXT_COLOR_2);
+        title.setTextSize(19.0f); // Slightly larger
+        title.setTypeface(Typeface.create("sans-serif-medium", Typeface.BOLD));
+        title.setPadding(dp(12), dp(8), dp(12), dp(6));
+        // Add subtle text shadow for premium effect
+        title.setShadowLayer(2.0f, 1.0f, 1.0f, Color.parseColor("#40000000"));
         RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
         rl.addRule(RelativeLayout.CENTER_HORIZONTAL);
         title.setLayoutParams(rl);
@@ -639,6 +646,10 @@ public class Menu {
         button.setAllCaps(false); //Disable caps to support html
         button.setText(Html.fromHtml(featName));
         button.setBackgroundColor(BTN_COLOR);
+
+        // Apply enhanced button styling
+        button.setBackground(getPremiumButtonDrawable());
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 switch (featNum) {
@@ -658,6 +669,28 @@ public class Menu {
         linLayout.addView(button);
     }
 
+    private LayerDrawable getPremiumButtonDrawable() {
+        //********** Mod menu button **********
+        GradientDrawable gdBtn = new GradientDrawable();
+        gdBtn.setCornerRadius(MENU_CORNER - 2); // Slightly smaller corners for buttons
+        gdBtn.setColor(BTN_COLOR);
+        // Premium button styling with gradient border
+        int[] borderColors = {Color.parseColor("#8B5CF6"), Color.parseColor("#3B82F6")};
+        GradientDrawable borderGradient = new GradientDrawable();
+        borderGradient.setCornerRadius(MENU_CORNER - 2);
+        borderGradient.setStroke(dp(1), Color.parseColor("#4F46E5"));
+
+        // Add subtle inner shadow effect
+        GradientDrawable innerShadow = new GradientDrawable();
+        innerShadow.setCornerRadius(MENU_CORNER - 3);
+        innerShadow.setColor(Color.parseColor("#10000000"));
+
+        LayerDrawable btnLayer = new LayerDrawable(new Drawable[]{gdBtn, borderGradient});
+        btnLayer.setLayerInset(1, dp(1), dp(1), dp(1), dp(1));
+
+        return btnLayer;
+    }
+
     private void ButtonLink(LinearLayout linLayout, final String featName, final String url) {
         final Button button = new Button(getContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT);
@@ -667,6 +700,10 @@ public class Menu {
         button.setTextColor(TEXT_COLOR_2);
         button.setText(Html.fromHtml(featName));
         button.setBackgroundColor(BTN_COLOR);
+
+        // Apply enhanced button styling
+        button.setBackground(getPremiumButtonDrawable());
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -715,6 +752,10 @@ public class Menu {
                 }
             }
         });
+
+        // Apply enhanced button styling
+        button.setBackground(getPremiumButtonDrawable());
+
         linLayout.addView(button);
     }
 
@@ -767,6 +808,10 @@ public class Menu {
         button.setLayoutParams(layoutParams);
         button.setBackgroundColor(BTN_COLOR);
         button.setTextColor(TEXT_COLOR_2);
+
+        // Apply enhanced button styling
+        button.setBackground(getPremiumButtonDrawable());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -854,6 +899,10 @@ editText.setFocusable(false);
         button.setLayoutParams(layoutParams);
         button.setBackgroundColor(BTN_COLOR);
         button.setTextColor(TEXT_COLOR_2);
+
+        // Apply enhanced button styling
+        button.setBackground(getPremiumButtonDrawable());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -944,6 +993,10 @@ editText.setFocusable(false);
         button.setLayoutParams(layoutParams);
         button.setBackgroundColor(BTN_COLOR);
         button.setTextColor(TEXT_COLOR_2);
+
+        // Apply enhanced button styling
+        button.setBackground(getPremiumButtonDrawable());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
